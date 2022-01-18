@@ -1,6 +1,8 @@
 <?php
 session_start();
 require('functions.php');
+
+
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
    if (!empty($_POST)) {
 	 // エラー項目の確認
@@ -10,8 +12,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	    if ($_POST['email'] === '') {
 		     $error['email'] = 'blank';
 	    }
-	    if (strlen($_POST['password']) < PWD_LENGTH) {
+	    if (strlen($_POST['password']) <= PWD_LENGTH) {
 		     $error['password'] = 'length';
+	    }
+	     if (strlen($_POST['password']) =='') {
+		     $error['password'] = 'blank';
 	    }
 	    if ($_POST['password'] === '') {
 		     $error['password'] = 'blank';

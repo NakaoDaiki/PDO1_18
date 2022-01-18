@@ -9,6 +9,7 @@ if (isset($_SESSION['id'])) {
     $dbh = db_conn();
     $sql = 'SELECT * FROM posts WHERE id=:id';
     $messages = $dbh->prepare($sql);
+    $messages -> bindValue(':id',$id, PDO::PARAM_INT);
 /* 期末課題　５）バインド処理を追加する */
     $messages->execute();
 	$message = $messages->fetch();
